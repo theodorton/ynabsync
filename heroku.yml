@@ -5,7 +5,7 @@ run:
   web: bin/sidekiq-ui -p $PORT
   worker:
     command:
-      - bin/sidekiq-worker
+      - bin/sidekiq-worker -c 1
     image: web
   scheduler:
     command:
