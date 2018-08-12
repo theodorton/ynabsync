@@ -1,9 +1,13 @@
 build:
   docker:
     web: Dockerfile
-    worker: Dockerfile
-    scheduler: Dockerfile
 run:
   web: bin/sidekiq-ui
-  worker: bin/sidekiq-worker
-  scheduler: bin/scheduler
+  worker:
+    command:
+      - bin/sidekiq-worker
+    image: web
+  scheduler:
+    command:
+      - bin/scheduler
+    image: web
