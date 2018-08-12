@@ -1,0 +1,13 @@
+name: ynabsync
+version: 0.1.0
+
+authors:
+  - Theodor Tonum <theodor@tonum.no>
+
+targets:
+  ynabsync:
+    main: src/ynabsync.cr
+
+crystal: 0.25.1
+
+license: MIT
