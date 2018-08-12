@@ -12,25 +12,25 @@ module SBanken
 
   class Account
     JSON.mapping(
-      accountId: String,
-      accountNumber: String,
-      available: Float32,
-      balance: Float32,
+      account_id: {key: "accountId", type: String},
+      account_number: {key: "accountNumber", type: String},
+      available: {key: "available", type: Float32},
+      balance: {key: "balance", type: Float32},
     )
   end
 
   class CardDetails
     JSON.mapping(
-      cardNumber: String,
-      currencyAmount: Float32,
-      currencyRate: Float32,
-      merchantCategoryCode: String,
-      merchantCategoryDescription: String,
-      merchantCity: String,
-      merchantName: String,
-      originalCurrencyCode: String,
-      purchaseDate: Time,
-      transactionId: String
+      card_number: {key: "cardNumber", type: String},
+      currency_amount: {key: "currencyAmount", type: Float32},
+      currency_rate: {key: "currencyRate", type: Float32},
+      merchant_category_code: {key: "merchantCategoryCode", type: String},
+      merchant_category_description: {key: "merchantCategoryDescription", type: String},
+      merchant_city: {key: "merchantCity", type: String},
+      merchant_name: {key: "merchantName", type: String},
+      original_currency_code: {key: "originalCurrencyCode", type: String},
+      purchase_date: {key: "purchaseDate", type: Time},
+      transaction_id: {key: "transactionId", type: String},
     )
   end
 
@@ -49,40 +49,40 @@ module SBanken
 
   class Transaction
     JSON.mapping(
-      accountingDate: Time,
-      interestDate: Time,
-      amount: Float32,
-      text: String,
-      transactionType: String,
-      transactionTypeCode: Int32,
-      transactionTypeText: String,
-      isReservation: Bool,
-      reservationType: ReservationType?,
-      source: TransactionSource,
-      cardDetails: CardDetails?,
-      cardDetailsSpecified: Bool,
+      accounting_date: {key: "accountingDate", type: Time},
+      interest_date: {key: "interestDate", type: Time},
+      amount: {key: "amount", type: Float32},
+      text: {key: "text", type: String},
+      transaction_type: {key: "transactionType", type: String},
+      transaction_type_code: {key: "transactionTypeCode", type: Int32},
+      transaction_type_text: {key: "transactionTypeText", type: String},
+      is_reservation: {key: "isReservation", type: Bool},
+      reservation_type: {key: "reservationType", type: ReservationType?},
+      source: {key: "source", type: TransactionSource},
+      card_details: {key: "cardDetails", type: CardDetails?},
+      card_details_specified: {key: "cardDetailsSpecified", type: Bool},
     )
   end
 
   class TokenErrorResponse
     JSON.mapping(
-      error: String
+      error: {key: "error", type: String}
     )
   end
 
   class SuccessResponse(T)
     JSON.mapping(
-      availableItems: Int32,
-      items: Array(T),
-      isError: Bool,
-      errorType: String?,
-      errorMessage: String?,
-      traceId: String?
+      available_items: {key: "availableItems", type: Int32},
+      items: {key: "items", type: Array(T)},
+      is_error: {key: "isError", type: Bool},
+      error_type: {key: "errorType", type: String?},
+      error_message: {key: "errorMessage", type: String?},
+      trace_id: {key: "traceId", type: String?}
     )
   end
 
-  TokenResponse = Union(Token, TokenErrorResponse)
-  AccountsResponse = SuccessResponse(Account)
+  TokenResponse        = Union(Token, TokenErrorResponse)
+  AccountsResponse     = SuccessResponse(Account)
   TransactionsResponse = SuccessResponse(Transaction)
 
   class Client

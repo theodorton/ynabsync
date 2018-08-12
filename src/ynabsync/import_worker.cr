@@ -18,12 +18,12 @@ module Ynabsync
                 json.object do
                   amount = (transaction.amount * 1000).to_i
                   json.field "account_id", ENV["YNAB_ACCOUNT_ID"]
-                  json.field "date", transaction.interestDate
+                  json.field "date", transaction.interest_date
                   json.field "amount", amount
                   json.field "memo", transaction.text
-                  json.field "cleared", transaction.isReservation ? "uncleared" : "cleared"
+                  json.field "cleared", transaction.is_reservation ? "uncleared" : "cleared"
                   json.field "approved", true
-                  json.field "import_id", "YNAB:#{amount}:#{transaction.interestDate.to_s("%F")}:1"
+                  json.field "import_id", "YNAB:#{amount}:#{transaction.interest_date.to_s("%F")}:1"
                 end
               end
             end
