@@ -1,0 +1,45 @@
+version: "3"
+services:
+  scheduler:
+    build: .
+    command: bin/scheduler
+    depends_on:
+      - redis
+    environment:
+      - REDIS_PROVIDER=REDIS_URL
+      - REDIS_URL=redis://redis:6379/0
+  worker:
+    build: .
+    command: bin/sidekiq-worker -c 1
+    depends_on:
+      - redis
+    environment:
+      - SBANKEN_APP_ID
+      - SBANKEN_SECRET
+      - CUSTOMER_ID
+      - ACCOUNT_ID
+      - YNAB_ACCESS_TOKEN
+      - YNAB_BUDGET_ID
+      - YNAB_ACCOUNT_ID
+      - REDIS_PROVIDER=REDIS_URL
+      - REDIS_URL=redis://redis:6379/0
+  ui:
+    build: .
+    command: bin/sidekiq-ui
+    depends_on:
+      - redis
+    environment:
+      - KEMAL_PASSWORD
+      - REDIS_PROVIDER=REDIS_URL
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "3000:3000"
+  redis:
+    image: redis:3.0.7
+    command: redis-server --appendonly yes
+    volumes:
+      - redis:/data
+
+volumes:
+  redis:
+    driver: local

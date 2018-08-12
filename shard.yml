@@ -5,9 +5,24 @@ authors:
   - Theodor Tonum <theodor@tonum.no>
 
 targets:
-  ynabsync:
-    main: src/ynabsync.cr
+  scheduler:
+    main: src/ynabsync/scheduler.cr
+  sidekiq-worker:
+    main: src/sidekiq-worker.cr
+  sidekiq-ui:
+    main: src/sidekiq-ui.cr
 
 crystal: 0.25.1
+
+dependencies:
+  sidekiq:
+    github: mperham/sidekiq.cr
+    branch: master
+  kemal:
+    github: kemalcr/kemal
+    branch: master
+  kemal-basic-auth:
+    github: kemalcr/kemal-basic-auth
+    branch: master
 
 license: MIT

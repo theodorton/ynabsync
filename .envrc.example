@@ -1,0 +1,8 @@
+export SBANKEN_APP_ID=""
+export SBANKEN_SECRET=""
+export CUSTOMER_ID=""
+export ACCOUNT_ID=""
+export YNAB_ACCESS_TOKEN=""
+export YNAB_BUDGET_ID=""
+export YNAB_ACCOUNT_ID=""
+export KEMAL_PASSWORD=""
