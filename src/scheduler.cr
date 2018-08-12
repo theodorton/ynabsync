@@ -9,5 +9,5 @@ log = Logger.new(STDOUT)
 loop do
   jid = Ynabsync::ImportWorker.async.perform()
   log.info "Scheduled job with ID #{jid}"
-  sleep 30
+  sleep 300
 end
