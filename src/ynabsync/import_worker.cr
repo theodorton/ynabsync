@@ -23,7 +23,7 @@ module Ynabsync
                   json.field "memo", transaction.text
                   json.field "cleared", transaction.isReservation ? "uncleared" : "cleared"
                   json.field "approved", true
-                  json.field "import_id", "YNAB:V3:#{amount}:#{transaction.interestDate.to_s("%F")}:1"
+                  json.field "import_id", "YNAB:#{amount}:#{transaction.interestDate.to_s("%F")}:1"
                 end
               end
             end
