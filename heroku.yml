@@ -2,7 +2,7 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: bin/sidekiq-ui
+  web: bin/sidekiq-ui -p $PORT
   worker:
     command:
       - bin/sidekiq-worker
