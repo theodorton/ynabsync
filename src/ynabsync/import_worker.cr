@@ -31,14 +31,11 @@ module Ynabsync
         end
       end
 
-      log.info "Request body: #{request_body}"
-
       headers = HTTP::Headers{
         "Content-Type" => "application/json",
         "Accept" => "application/json"
       }
       response = HTTP::Client.post "https://api.youneedabudget.com/v1/budgets/#{ENV["YNAB_BUDGET_ID"]}/transactions/bulk?access_token=#{ENV["YNAB_ACCESS_TOKEN"]}", headers, request_body
-      puts response.body
 
       # NOTE: Duplicate import id's is impossible to reset (even by rejecting or deleting transactions)
     end
